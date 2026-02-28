@@ -211,6 +211,14 @@ export function Dashboard() {
         )}
       </main>
 
+      <div className="mt-16 border-t border-white/10 pt-6 text-center">
+        <p className="text-xs text-white/50 leading-relaxed">
+        🔒 本サービスではGoogle認証を利用しています。<br />
+          個人情報を第三者へ提供することはありません。<br />
+          データはユーザーごとの識別IDにより安全に管理されています。
+        </p>
+      </div>
+
       <CreateMessageModal
         isOpen={showModal}
         onClose={() => setShowModal(false)}
