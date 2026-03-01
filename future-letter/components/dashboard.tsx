@@ -44,10 +44,25 @@ export function Dashboard() {
   // ✅ 保険
   const safeMessages = Array.isArray(messages) ? messages : []
 
-  const delivered = safeMessages.filter((m) => m.isDelivered)
+  const now = new Date()
+
+  const computedMessages = safeMessages.map((m) => ({ ...m,
+    isDelivered: new Date(m.deliverDate) <= now,
+  }))
+
+  /*const delivered = safeMessages.filter((m) => m.isDelivered)
   const pending = safeMessages.filter((m) => !m.isDelivered)
 
   const filtered = safeMessages
+    .filter((m) => {
+      if (filter === "delivered") return m.isDelivered
+      if (filter === "pending") return !m.isDelivered
+      return true
+    })*/
+  const delivered = computedMessages.filter((m) => m.isDelivered)
+  const pending = computedMessages.filter((m) => !m.isDelivered)
+
+  const filtered = computedMessages
     .filter((m) => {
       if (filter === "delivered") return m.isDelivered
       if (filter === "pending") return !m.isDelivered
